@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ImageUp } from "lucide-react";
+import { CldImage, CldUploadWidget } from "next-cloudinary";
 import axios from "axios";
 import * as z from "zod";
 import { Pencil, PlusCircle, ImageIcon } from "lucide-react";
@@ -10,7 +11,6 @@ import { Pencil, PlusCircle, ImageIcon } from "lucide-react";
 import { Course } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
-import { FileUpload } from "@/components/file-upload";
 import { useToast } from "@/components/ui/use-toast";
 
 type ImageFormProps = {
@@ -87,25 +87,35 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 					</div>
 				) : (
 					<div className="relative mt-2 aspect-video">
-						<Image
+						<CldImage
+							src={initialData.imageUrl}
 							alt="Upload"
 							fill
+							sizes="50vw"
 							className="rounded-md object-cover"
-							src={initialData.imageUrl}
 						/>
 					</div>
 				))}
 
 			{isEditing && (
 				<div>
-					<FileUpload
-						endpoint="courseImage"
-						onChange={(url) => {
-							if (url) {
-								onSubmit({ imageUrl: url });
-							}
+					<CldUploadWidget
+						uploadPreset="jifunzeImages"
+						signatureEndpoint="/api/cloudinary"
+						options={{ sources: ["local"], maxFiles: 1 }}
+						onSuccess={(result: any) => {
+							result && onSubmit({ imageUrl: result.info.secure_url });
 						}}
-					/>
+					>
+						{({ open }) => {
+							return (
+								<Button onClick={() => open()}>
+									<ImageUp className="mr-2 h-4 w-4" />
+									Upload Image
+								</Button>
+							);
+						}}
+					</CldUploadWidget>
 
 					<div className="mt-4 text-xs text-muted-foreground">
 						16:9 aspect ratio recommended
