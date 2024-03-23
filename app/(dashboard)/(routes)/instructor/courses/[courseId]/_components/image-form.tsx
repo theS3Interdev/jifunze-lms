@@ -91,7 +91,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 							src={initialData.imageUrl}
 							alt="Upload"
 							fill
-							sizes="50vw"
+							sizes="100vw"
 							className="rounded-md object-cover"
 						/>
 					</div>
@@ -118,7 +118,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 					</CldUploadWidget>
 
 					<div className="mt-4 text-xs text-muted-foreground">
-						16:9 aspect ratio recommended
+						16:9 aspect ratio is recommended.
 					</div>
 				</div>
 			)}
