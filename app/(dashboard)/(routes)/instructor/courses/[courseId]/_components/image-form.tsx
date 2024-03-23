@@ -104,7 +104,9 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 						signatureEndpoint="/api/cloudinary"
 						options={{ sources: ["local"], maxFiles: 1 }}
 						onSuccess={(result: any) => {
-							result && onSubmit({ imageUrl: result.info.secure_url });
+							if (result) {
+								onSubmit({ imageUrl: result.info.secure_url });
+							}
 						}}
 					>
 						{({ open }) => {
