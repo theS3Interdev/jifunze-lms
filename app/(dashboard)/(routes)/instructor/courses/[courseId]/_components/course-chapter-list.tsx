@@ -10,13 +10,17 @@ import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
 
-type ChaptersListProps = {
+type CourseChaptersListProps = {
 	items: Chapter[];
 	onReorder: (updateData: { id: string; position: number }[]) => void;
 	onEdit: (id: string) => void;
 };
 
-export const ChapterList = ({ items, onReorder, onEdit }: ChaptersListProps) => {
+export const CourseChapterList = ({
+	items,
+	onReorder,
+	onEdit,
+}: CourseChaptersListProps) => {
 	const [isMounted, setIsMounted] = useState(false);
 
 	const [chapters, setChapters] = useState(items);

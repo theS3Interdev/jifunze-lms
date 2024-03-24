@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 
-type PriceFormProps = {
+type CoursePriceFormProps = {
 	initialData: Course;
 	courseId: string;
 };
@@ -33,7 +33,7 @@ const formSchema = z.object({
 	price: z.coerce.number(),
 });
 
-export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
+export const CoursePriceForm = ({ initialData, courseId }: CoursePriceFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();

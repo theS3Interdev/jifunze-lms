@@ -12,7 +12,7 @@ import { FileUpload } from "@/components/file-upload";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-type AttachmentFormProps = {
+type CourseAttachmentFormProps = {
 	initialData: Course & { attachments: Attachment[] };
 	courseId: string;
 };
@@ -21,7 +21,10 @@ const formSchema = z.object({
 	url: z.string().min(1),
 });
 
-export const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
+export const CourseAttachmentForm = ({
+	initialData,
+	courseId,
+}: CourseAttachmentFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const [deletingId, setDeletingId] = useState<string | null>(null);
