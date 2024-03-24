@@ -10,8 +10,8 @@ import { IconBadge } from "@/components/icon-badge";
 
 // import { ChapterAccessForm } from "./_components/chapter-access-form";
 // import { ChapterActions } from "./_components/chapter-actions";
-// import { ChapterDescriptionForm } from "./_components/chapter-description-form";
-// import { ChapterTitleForm } from "./_components/chapter-title-form";
+import { ChapterDescriptionForm } from "./_components/chapter-description-form";
+import { ChapterTitleForm } from "./_components/chapter-title-form";
 // import { ChapterVideoForm } from "./_components/chapter-video-form";
 
 const ChapterPage = async ({
@@ -96,17 +96,17 @@ const ChapterPage = async ({
 								<h2 className="text-xl">Customize your chapter</h2>
 							</div>
 
-							{/* <ChapterTitleForm
+							<ChapterTitleForm
 								initialData={chapter}
 								courseId={params.courseId}
 								chapterId={params.chapterId}
-							/> */}
+							/>
 
-							{/* <ChapterDescriptionForm
+							<ChapterDescriptionForm
 								initialData={chapter}
 								courseId={params.courseId}
 								chapterId={params.chapterId}
-							/> */}
+							/>
 						</div>
 
 						<div>
