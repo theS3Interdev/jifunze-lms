@@ -8,6 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 
+import { Course } from "@prisma/client";
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -16,28 +19,29 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 
-type TitleFormProps = {
-	initialData: {
-		title: string;
-	};
+type CourseDescriptionFormProps = {
+	initialData: Course;
 	courseId: string;
 };
 
 const formSchema = z.object({
-	title: z
+	description: z
 		.string()
 		.min(2, {
-			message: "What is the course title?",
+			message: "What is the course description?",
 		})
 		.max(250, {
-			message: "The course title should not be more than 250 characters.",
+			message: "The course description should not be more than 250 characters.",
 		}),
 });
 
-export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+export const CourseDescriptionForm = ({
+	initialData,
+	courseId,
+}: CourseDescriptionFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();
@@ -48,7 +52,9 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: initialData,
+		defaultValues: {
+			description: initialData?.description || "",
+		},
 	});
 
 	const { isSubmitting, isValid } = form.formState;
@@ -58,8 +64,8 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 			await axios.patch(`/api/courses/${courseId}`, values);
 
 			toast({
-				title: "Course title updated",
-				description: "The course title has been successfully updated.",
+				title: "Course updated",
+				description: "The course description has been successfully updated.",
 				duration: 5000,
 				className: "success-toast",
 			});
@@ -80,33 +86,42 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 	return (
 		<div className="mt-6 rounded-md border bg-slate-100 p-4">
 			<div className="flex items-center justify-between font-medium">
-				Course title
+				Course description
 				<Button onClick={toggleEdit} variant="ghost">
 					{isEditing ? (
 						<>Cancel</>
 					) : (
 						<>
 							<Pencil className="mr-2 h-4 w-4" />
-							Edit title
+							Edit description
 						</>
 					)}
 				</Button>
 			</div>
 
-			{!isEditing && <p className="mt-2 text-sm">{initialData.title}</p>}
+			{!isEditing && (
+				<p
+					className={cn(
+						"mt-2 text-sm",
+						!initialData.description && "italic text-slate-500",
+					)}
+				>
+					{initialData.description || "No description"}
+				</p>
+			)}
 
 			{isEditing && (
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
 						<FormField
 							control={form.control}
-							name="title"
+							name="description"
 							render={({ field }) => (
 								<FormItem>
 									<FormControl>
-										<Input
+										<Textarea
 											disabled={isSubmitting}
-											placeholder="e.g. 'Advanced web development'"
+											placeholder="e.g. 'This course is about...'"
 											{...field}
 										/>
 									</FormControl>

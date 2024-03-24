@@ -8,8 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 
-import { Course } from "@prisma/client";
+import { Chapter } from "@prisma/client";
 import { cn } from "@/lib/utils";
+
+import { Editor } from "@/components/editor";
+import { Preview } from "@/components/preview";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,26 +22,30 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 
-type DescriptionFormProps = {
-	initialData: Course;
+type ChapterDescriptionFormProps = {
+	initialData: Chapter;
 	courseId: string;
+	chapterId: string;
 };
 
 const formSchema = z.object({
 	description: z
 		.string()
 		.min(2, {
-			message: "What is the course description?",
+			message: "What is the chapter description?",
 		})
 		.max(250, {
-			message: "The course description should not be more than 250 characters.",
+			message: "The chapter description should not be more than 250 characters.",
 		}),
 });
 
-export const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
+export const ChapterDescriptionForm = ({
+	initialData,
+	courseId,
+	chapterId,
+}: ChapterDescriptionFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();
@@ -58,11 +65,11 @@ export const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps)
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			await axios.patch(`/api/courses/${courseId}`, values);
+			await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
 
 			toast({
-				title: "Course updated",
-				description: "The course description has been successfully updated.",
+				title: "Chapter updated",
+				description: "The chapter description has been successfully updated.",
 				duration: 5000,
 				className: "success-toast",
 			});
@@ -83,7 +90,7 @@ export const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps)
 	return (
 		<div className="mt-6 rounded-md border bg-slate-100 p-4">
 			<div className="flex items-center justify-between font-medium">
-				Course description
+				Chapter description
 				<Button onClick={toggleEdit} variant="ghost">
 					{isEditing ? (
 						<>Cancel</>
@@ -97,14 +104,16 @@ export const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps)
 			</div>
 
 			{!isEditing && (
-				<p
+				<div
 					className={cn(
 						"mt-2 text-sm",
 						!initialData.description && "italic text-slate-500",
 					)}
 				>
-					{initialData.description || "No description"}
-				</p>
+					{!initialData.description && "No description"}
+
+					{initialData.description && <Preview value={initialData.description} />}
+				</div>
 			)}
 
 			{isEditing && (
@@ -116,11 +125,7 @@ export const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps)
 							render={({ field }) => (
 								<FormItem>
 									<FormControl>
-										<Textarea
-											disabled={isSubmitting}
-											placeholder="e.g. 'This course is about...'"
-											{...field}
-										/>
+										<Editor {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

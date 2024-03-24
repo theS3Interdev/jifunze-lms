@@ -2,28 +2,34 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { CldImage, CldUploadWidget } from "next-cloudinary";
 import axios from "axios";
+import { CldUploadWidget } from "next-cloudinary";
 import * as z from "zod";
-import { Pencil, PlusCircle, ImageIcon } from "lucide-react";
+import { Pencil, PlusCircle, Video } from "lucide-react";
 
-import { Course } from "@prisma/client";
+import { Chapter, CloudinaryData } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { VideoPlayer } from "@/components/video-player";
 
-type ImageFormProps = {
-	initialData: Course;
+type ChapterVideoFormProps = {
+	initialData: Chapter & { CloudinaryData?: CloudinaryData | null };
 	courseId: string;
+	chapterId: string;
 };
 
 const formSchema = z.object({
-	imageUrl: z.string().min(1, {
-		message: "The course image is required.",
-	}),
+	videoUrl: z.string().min(1),
+	playbackId: z.string().min(1),
+	publicId: z.string().min(1),
 });
 
-export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
+export const ChapterVideoForm = ({
+	initialData,
+	courseId,
+	chapterId,
+}: ChapterVideoFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();
@@ -34,11 +40,11 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
-			await axios.patch(`/api/courses/${courseId}`, values);
+			await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
 
 			toast({
-				title: "Course updated",
-				description: "The course image has been successfully updated.",
+				title: "Chapter updated",
+				description: "The chapter video has been updated successfully.",
 				duration: 5000,
 				className: "success-toast",
 			});
@@ -59,39 +65,38 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 	return (
 		<div className="mt-6 rounded-md border bg-slate-100 p-4">
 			<div className="flex items-center justify-between font-medium">
-				Course image
+				Chapter video
 				<Button onClick={toggleEdit} variant="ghost">
 					{isEditing && <>Cancel</>}
 
-					{!isEditing && !initialData.imageUrl && (
+					{!isEditing && !initialData.videoUrl && (
 						<>
 							<PlusCircle className="mr-2 h-4 w-4" />
-							Add an image
+							Add a video
 						</>
 					)}
 
-					{!isEditing && initialData.imageUrl && (
+					{!isEditing && initialData.videoUrl && (
 						<>
 							<Pencil className="mr-2 h-4 w-4" />
-							Edit image
+							Edit video
 						</>
 					)}
 				</Button>
 			</div>
 
 			{!isEditing &&
-				(!initialData.imageUrl ? (
+				(!initialData.videoUrl ? (
 					<div className="flex h-60 items-center justify-center rounded-md bg-slate-200">
-						<ImageIcon className="h-10 w-10 text-slate-500" />
+						<Video id="empty" className="h-10 w-10 text-slate-500" />
 					</div>
 				) : (
 					<div className="relative mt-2 aspect-video">
-						<CldImage
-							src={initialData.imageUrl}
-							alt="Upload"
-							fill
-							sizes="100vw"
-							className="rounded-md object-cover"
+						<VideoPlayer
+							id={initialData.playbackId!}
+							publicId={initialData.publicId!}
+							width={0}
+							height={0}
 						/>
 					</div>
 				))}
@@ -99,27 +104,38 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 			{isEditing && (
 				<div>
 					<CldUploadWidget
-						uploadPreset="jifunzeImages"
+						uploadPreset="jifunzeVideos"
 						signatureEndpoint="/api/cloudinary"
 						options={{ sources: ["local"], maxFiles: 1 }}
 						onSuccess={(result: any) => {
 							if (result) {
-								onSubmit({ imageUrl: result.info.secure_url });
+								onSubmit({
+									videoUrl: result.info.secure_url,
+									playbackId: result.info.id,
+									publicId: result.info.public_id,
+								});
 							}
 						}}
 					>
 						{({ open }) => {
 							return (
 								<Button onClick={() => open()} className="bg-blue-600">
-									Upload Image
+									Upload Video
 								</Button>
 							);
 						}}
 					</CldUploadWidget>
 
 					<div className="mt-4 text-xs text-muted-foreground">
-						16:9 aspect ratio is recommended.
+						Upload this chapter&apos;s video.
 					</div>
+				</div>
+			)}
+
+			{initialData.videoUrl && !isEditing && (
+				<div className="mt-2 text-xs text-muted-foreground">
+					Videos may take a few minutes to process. Refresh the page if video
+					doesn&apos;t load.
 				</div>
 			)}
 		</div>
