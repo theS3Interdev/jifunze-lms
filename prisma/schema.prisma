@@ -9,99 +9,92 @@ datasource db {
 
 model Course {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   userId      String
   title       String
   description String?
   imageUrl    String?
   price       Float?
   isPublished Boolean      @default(false)
-  categoryId  String       @db.ObjectId
+  categoryId  String?      @db.ObjectId
   category    Category?    @relation(fields: [categoryId], references: [id])
   attachments Attachment[]
   chapters    Chapter[]
-  purchases   Purchase[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  purchase    Purchase[]
 }
 
 model Category {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
-  courses   Course[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  name      String   @unique
+  courses   Course[]
 }
 
 model Attachment {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   name      String
   url       String
   courseId  String   @db.ObjectId
   course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Chapter {
   id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
   title          String
   description    String?
   videoUrl       String?
   position       Int
   isPublished    Boolean         @default(false)
   isFree         Boolean         @default(false)
+  cloudinaryData CloudinaryData?
   courseId       String          @db.ObjectId
   course         Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  muxData        MuxData?
-  CloudinaryData CloudinaryData?
-  UserProgress   UserProgress[]
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-}
-
-model MuxData {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  assetId    String
-  playbackId String?
-  chapterId  String   @unique @db.ObjectId
-  chapter    Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  userProgress   UserProgress[]
 }
 
 model CloudinaryData {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  publicId  String
-  secureUrl String
-  chapterId String   @unique @db.ObjectId
-  chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  secureUrl String
+  publicId  String?
+  chapterId String   @unique @db.ObjectId
+  chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String
-  chapterId   String   @unique @db.ObjectId
-  chapter     Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-  isCompleted Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  userId      String
+  chapterId   String   @db.ObjectId
+  chapter     Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  isCompleted Boolean  @default(false)
+
+  @@unique([userId, chapterId])
 }
 
 model Purchase {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String
-  courseId  String   @unique @db.ObjectId
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
+  userId    String
+  courseId  String   @db.ObjectId
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
 }
 
 model PaymentCustomer {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String
-  orderId   String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    String   @unique
+  orderId   String   @unique
 }
