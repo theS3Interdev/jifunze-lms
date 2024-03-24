@@ -8,11 +8,11 @@ import { db } from "@/lib/data/db";
 import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
 
-// import { ChapterAccessForm } from "./_components/chapter-access-form";
-// import { ChapterActions } from "./_components/chapter-actions";
+import { ChapterAccessForm } from "./_components/chapter-access-form";
+import { ChapterActions } from "./_components/chapter-actions";
 import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterTitleForm } from "./_components/chapter-title-form";
-// import { ChapterVideoForm } from "./_components/chapter-video-form";
+import { ChapterVideoForm } from "./_components/chapter-video-form";
 
 const ChapterPage = async ({
 	params,
@@ -77,12 +77,12 @@ const ChapterPage = async ({
 								</span>
 							</div>
 
-							{/* <ChapterActions
+							<ChapterActions
 								disabled={!isComplete}
 								courseId={params.courseId}
 								chapterId={params.chapterId}
 								isPublished={chapter.isPublished}
-							/> */}
+							/>
 						</div>
 					</div>
 				</div>
@@ -113,14 +113,14 @@ const ChapterPage = async ({
 							<div className="flex items-center gap-x-2">
 								<IconBadge icon={Eye} />
 
-								<h2 className="text-xl">Access Settings</h2>
+								<h2 className="text-xl">Access settings</h2>
 							</div>
 
-							{/* <ChapterAccessForm
+							<ChapterAccessForm
 								initialData={chapter}
 								courseId={params.courseId}
 								chapterId={params.chapterId}
-							/> */}
+							/>
 						</div>
 					</div>
 
@@ -131,11 +131,11 @@ const ChapterPage = async ({
 							<h2 className="text-xl">Add a video</h2>
 						</div>
 
-						{/* <ChapterVideoForm
+						<ChapterVideoForm
 							initialData={chapter}
 							chapterId={params.chapterId}
 							courseId={params.courseId}
-						/> */}
+						/>
 					</div>
 				</div>
 			</div>

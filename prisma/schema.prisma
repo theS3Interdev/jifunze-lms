@@ -49,6 +49,8 @@ model Chapter {
   title          String
   description    String?
   videoUrl       String?
+  playbackId     String?
+  publicId       String?
   position       Int
   isPublished    Boolean         @default(false)
   isFree         Boolean         @default(false)
@@ -59,13 +61,14 @@ model Chapter {
 }
 
 model CloudinaryData {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  secureUrl String
-  publicId  String?
-  chapterId String   @unique @db.ObjectId
-  chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  playbackId String?
+  publicId   String?
+  secureUrl  String?
+  chapterId  String   @unique @db.ObjectId
+  chapter    Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model UserProgress {
