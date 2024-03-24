@@ -12,7 +12,7 @@ import { Course } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-type ImageFormProps = {
+type CourseImageFormProps = {
 	initialData: Course;
 	courseId: string;
 };
@@ -23,7 +23,7 @@ const formSchema = z.object({
 	}),
 });
 
-export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
+export const CourseImageForm = ({ initialData, courseId }: CourseImageFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();

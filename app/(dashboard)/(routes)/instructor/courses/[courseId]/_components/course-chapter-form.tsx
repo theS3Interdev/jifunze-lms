@@ -23,9 +23,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 
-import { ChapterList } from "./chapter-list";
+import { CourseChapterList } from "./course-chapter-list";
 
-type ChapterFormProps = {
+type CourseChapterFormProps = {
 	initialData: Course & { chapters: Chapter[] };
 	courseId: string;
 };
@@ -34,7 +34,7 @@ const formSchema = z.object({
 	title: z.string().min(1),
 });
 
-export const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
+export const CourseChapterForm = ({ initialData, courseId }: CourseChapterFormProps) => {
 	const [isCreating, setIsCreating] = useState(false);
 
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -169,7 +169,7 @@ export const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
 					)}
 				>
 					{!initialData.chapters.length && "No chapters"}
-					<ChapterList
+					<CourseChapterList
 						onEdit={onEdit}
 						onReorder={onReorder}
 						items={initialData.chapters || []}

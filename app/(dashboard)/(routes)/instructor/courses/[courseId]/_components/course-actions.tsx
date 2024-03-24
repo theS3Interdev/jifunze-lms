@@ -6,51 +6,54 @@ import axios from "axios";
 import { Trash } from "lucide-react";
 
 import { ConfirmModal } from "@/components/modals/confirm-modal";
+import { useConfettiStore } from "@/lib/hooks/use-confetti-store";
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-type ChapterActionsProps = {
+type CourseActionsProps = {
 	disabled: boolean;
 	courseId: string;
-	chapterId: string;
 	isPublished: boolean;
 };
 
-export const ChapterActions = ({
+export const CourseActions = ({
 	disabled,
 	courseId,
-	chapterId,
 	isPublished,
-}: ChapterActionsProps) => {
+}: CourseActionsProps) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const router = useRouter();
 
 	const { toast } = useToast();
 
+	const confetti = useConfettiStore();
+
 	const onClick = async () => {
 		try {
 			setIsLoading(true);
 
 			if (isPublished) {
-				await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`);
+				await axios.patch(`/api/courses/${courseId}/unpublish`);
 
 				toast({
-					title: "Chapter unpublished",
-					description: "The chapter has been successfully unpublished.",
+					title: "Course unpublished",
+					description: "The course has been successfully unpublished.",
 					duration: 5000,
 					className: "success-toast",
 				});
 			} else {
-				await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`);
+				await axios.patch(`/api/courses/${courseId}/publish`);
 
 				toast({
-					title: "Chapter published",
-					description: "The chapter has been published successfully.",
+					title: "Course published",
+					description: "The course has been published sucessfully.",
 					duration: 5000,
 					className: "success-toast",
 				});
+
+				confetti.onOpen();
 			}
 
 			router.refresh();
@@ -70,18 +73,18 @@ export const ChapterActions = ({
 		try {
 			setIsLoading(true);
 
-			await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
+			await axios.delete(`/api/courses/${courseId}`);
 
 			toast({
-				title: "Chapter deleted",
-				description: "The chapter has been successfully deleted.",
+				title: "Course deleted",
+				description: "The course has been sucessfully deleted.",
 				duration: 5000,
 				className: "success-toast",
 			});
 
 			router.refresh();
 
-			router.push(`/instructor/courses/${courseId}`);
+			router.push(`/instructor/courses`);
 		} catch {
 			toast({
 				title: "Something went wrong",

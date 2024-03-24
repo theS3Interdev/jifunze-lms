@@ -8,6 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 
+import { Course } from "@prisma/client";
+
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
 	Form,
@@ -16,28 +20,30 @@ import {
 	FormItem,
 	FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 
-type TitleFormProps = {
-	initialData: {
-		title: string;
-	};
+type CourseCategoryFormProps = {
+	initialData: Course;
 	courseId: string;
+	options: { label: string; value: string }[];
 };
 
 const formSchema = z.object({
-	title: z
-		.string()
-		.min(2, {
-			message: "What is the course title?",
-		})
-		.max(250, {
-			message: "The course title should not be more than 250 characters.",
-		}),
+	categoryId: z.string().min(1),
 });
 
-export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+export const CourseCategoryForm = ({
+	initialData,
+	courseId,
+	options,
+}: CourseCategoryFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 
 	const router = useRouter();
@@ -48,7 +54,9 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: initialData,
+		defaultValues: {
+			categoryId: initialData?.categoryId || "",
+		},
 	});
 
 	const { isSubmitting, isValid } = form.formState;
@@ -58,8 +66,8 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 			await axios.patch(`/api/courses/${courseId}`, values);
 
 			toast({
-				title: "Course title updated",
-				description: "The course title has been successfully updated.",
+				title: "Course category updated",
+				description: "The course category has been successfully updated.",
 				duration: 5000,
 				className: "success-toast",
 			});
@@ -77,39 +85,60 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 		}
 	};
 
+	const selectedOption = options.find(
+		(option) => option.value === initialData.categoryId,
+	);
+
 	return (
 		<div className="mt-6 rounded-md border bg-slate-100 p-4">
 			<div className="flex items-center justify-between font-medium">
-				Course title
+				Course category
 				<Button onClick={toggleEdit} variant="ghost">
 					{isEditing ? (
 						<>Cancel</>
 					) : (
 						<>
 							<Pencil className="mr-2 h-4 w-4" />
-							Edit title
+							Edit category
 						</>
 					)}
 				</Button>
 			</div>
 
-			{!isEditing && <p className="mt-2 text-sm">{initialData.title}</p>}
+			{!isEditing && (
+				<p
+					className={cn(
+						"mt-2 text-sm",
+						!initialData.categoryId && "italic text-slate-500",
+					)}
+				>
+					{selectedOption?.label || "No category"}
+				</p>
+			)}
 
 			{isEditing && (
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
 						<FormField
 							control={form.control}
-							name="title"
+							name="categoryId"
 							render={({ field }) => (
 								<FormItem>
-									<FormControl>
-										<Input
-											disabled={isSubmitting}
-											placeholder="e.g. 'Advanced web development'"
-											{...field}
-										/>
-									</FormControl>
+									<Select onValueChange={field.onChange} defaultValue={field.value}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select category..." />
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{options.map((option) => (
+												<SelectItem key={option.value} value={option.value}>
+													{option.label}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
 									<FormMessage />
 								</FormItem>
 							)}
