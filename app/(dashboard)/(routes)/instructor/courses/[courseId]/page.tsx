@@ -10,7 +10,7 @@ import { IconBadge } from "@/components/icon-badge";
 // import { Actions } from "./_components/actions";
 import { AttachmentForm } from "./_components/attachment-form";
 import { CategoryForm } from "./_components/category-form";
-// import { ChapterForm } from "./_components/chapter-form";
+import { ChapterForm } from "./_components/chapter-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
 import { PriceForm } from "./_components/price-form";
@@ -34,11 +34,11 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 					createdAt: "desc",
 				},
 			},
-			// chapters: {
-			// 	orderBy: {
-			// 		position: "asc",
-			// 	},
-			// },
+			chapters: {
+				orderBy: {
+					position: "asc",
+				},
+			},
 		},
 	});
 
@@ -58,7 +58,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 		course.imageUrl,
 		course.price,
 		course.categoryId,
-		// course.chapters.some((chapter) => chapter.isPublished),
+		course.chapters.some((chapter) => chapter.isPublished),
 	];
 
 	const totalFields = requiredFields.length;
@@ -124,7 +124,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 								<h2 className="text-xl">Course chapters</h2>
 							</div>
 
-							{/* <ChapterForm initialData={course} courseId={course.id} /> */}
+							<ChapterForm initialData={course} courseId={course.id} />
 						</div>
 
 						<div>

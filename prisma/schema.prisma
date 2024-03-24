@@ -20,7 +20,7 @@ model Course {
   categoryId  String?      @db.ObjectId
   category    Category?    @relation(fields: [categoryId], references: [id])
   attachments Attachment[]
-  chapter     Chapter[]
+  chapters    Chapter[]
   purchase    Purchase[]
 }
 
