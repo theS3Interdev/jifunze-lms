@@ -8,12 +8,12 @@ import { Banner } from "@/components/banner";
 import { IconBadge } from "@/components/icon-badge";
 
 // import { Actions } from "./_components/actions";
-// import { AttachmentForm } from "./_components/attachment-form";
-// import { CategoryForm } from "./_components/category-form";
+import { AttachmentForm } from "./_components/attachment-form";
+import { CategoryForm } from "./_components/category-form";
 // import { ChapterForm } from "./_components/chapter-form";
 import { DescriptionForm } from "./_components/description-form";
 import { ImageForm } from "./_components/image-form";
-// import { PriceForm } from "./_components/price-form";
+import { PriceForm } from "./_components/price-form";
 import { TitleForm } from "./_components/title-form";
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
@@ -106,14 +106,14 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 
 						<ImageForm initialData={course} courseId={course.id} />
 
-						{/*<CategoryForm
+						<CategoryForm
 							initialData={course}
 							courseId={course.id}
 							options={categories.map((category) => ({
 								label: category.name,
 								value: category.id,
 							}))}
-						/> */}
+						/>
 					</div>
 
 					<div className="space-y-6">
@@ -134,7 +134,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 								<h2 className="text-xl">Sell your course</h2>
 							</div>
 
-							{/* <PriceForm initialData={course} courseId={course.id} /> */}
+							<PriceForm initialData={course} courseId={course.id} />
 						</div>
 
 						<div>
@@ -144,7 +144,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
 								<h2 className="text-xl">Resources and attachments</h2>
 							</div>
 
-							{/* <AttachmentForm initialData={course} courseId={course.id} /> */}
+							<AttachmentForm initialData={course} courseId={course.id} />
 						</div>
 					</div>
 				</div>

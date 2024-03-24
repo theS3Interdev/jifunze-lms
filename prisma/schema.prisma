@@ -20,6 +20,8 @@ model Course {
   categoryId  String?      @db.ObjectId
   category    Category?    @relation(fields: [categoryId], references: [id])
   attachments Attachment[]
+  chapter     Chapter[]
+  purchase    Purchase[]
 }
 
 model Category {
@@ -38,4 +40,61 @@ model Attachment {
   url       String
   courseId  String   @db.ObjectId
   course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model Chapter {
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  title          String
+  description    String?
+  videoUrl       String?
+  position       Int
+  isPublished    Boolean         @default(false)
+  isFree         Boolean         @default(false)
+  cloudinaryData CloudinaryData?
+  courseId       String          @db.ObjectId
+  course         Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  userProgress   UserProgress[]
+}
+
+model CloudinaryData {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  secureUrl String
+  publicId  String?
+  chapterId String   @unique @db.ObjectId
+  chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+}
+
+model UserProgress {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String
+  chapterId   String   @db.ObjectId
+  chapter     Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  isCompleted Boolean  @default(false)
+
+  @@unique([userId, chapterId])
+}
+
+model Purchase {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  userId    String
+  courseId  String   @db.ObjectId
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+}
+
+model PaymentCustomer {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   @unique
+  orderId   String   @unique
 }
