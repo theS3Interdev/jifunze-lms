@@ -148,7 +148,7 @@ export const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) =
 					/>
 
 					<div className="mt-4 text-xs text-muted-foreground">
-						Add anything your students may need to complete the course.
+						Add anything your learners may need to complete the course.
 					</div>
 				</div>
 			)}

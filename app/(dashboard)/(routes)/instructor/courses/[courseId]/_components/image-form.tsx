@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ImageUp } from "lucide-react";
 import { CldImage, CldUploadWidget } from "next-cloudinary";
 import axios from "axios";
 import * as z from "zod";
@@ -111,8 +110,7 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 					>
 						{({ open }) => {
 							return (
-								<Button onClick={() => open()}>
-									<ImageUp className="mr-2 h-4 w-4" />
+								<Button onClick={() => open()} className="bg-blue-600">
 									Upload Image
 								</Button>
 							);
