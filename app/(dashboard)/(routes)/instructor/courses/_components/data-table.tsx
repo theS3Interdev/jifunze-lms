@@ -36,6 +36,7 @@ export function DataTable<TData, TValue>({
 	data,
 }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
+
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
 	const table = useReactTable({
@@ -55,7 +56,7 @@ export function DataTable<TData, TValue>({
 
 	return (
 		<div>
-			<div className="flex items-center justify-between py-4">
+			<div className="flex items-center justify-between space-x-2 py-4">
 				<Input
 					placeholder="Filter courses..."
 					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
@@ -64,6 +65,7 @@ export function DataTable<TData, TValue>({
 					}
 					className="max-w-sm"
 				/>
+
 				<Link href="/teacher/create">
 					<Button>
 						<PlusCircle className="mr-2 h-4 w-4" />
