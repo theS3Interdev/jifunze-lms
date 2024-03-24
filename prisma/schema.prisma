@@ -21,7 +21,7 @@ model Course {
   category    Category?    @relation(fields: [categoryId], references: [id])
   attachments Attachment[]
   chapters    Chapter[]
-  purchase    Purchase[]
+  purchases   Purchase[]
 }
 
 model Category {
