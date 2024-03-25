@@ -6,7 +6,7 @@ import { IconBadge } from "@/components/icon-badge";
 import { formatPrice } from "@/lib/format";
 import { CourseProgress } from "@/components/course-progress";
 
-interface CourseCardProps {
+type CourseCardProps = {
 	id: string;
 	title: string;
 	imageUrl: string;
@@ -14,7 +14,7 @@ interface CourseCardProps {
 	price: number;
 	progress: number | null;
 	category: string;
-}
+};
 
 export const CourseCard = ({
 	id,
@@ -42,6 +42,7 @@ export const CourseCard = ({
 					<div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
 						<div className="flex items-center gap-x-1 text-slate-500">
 							<IconBadge size="sm" icon={BookOpen} />
+
 							<span>
 								{chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
 							</span>

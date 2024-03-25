@@ -4,7 +4,7 @@ import { getProgress } from "@/lib/actions/get-progress";
 
 import { db } from "@/lib/data/db";
 
-type CourseWithProgressWithCategory = Course & {
+type CourseWithProgressAndCategory = Course & {
 	category: Category | null;
 	chapters: { id: string }[];
 	progress: number | null;
@@ -20,7 +20,7 @@ export const getCourses = async ({
 	userId,
 	title,
 	categoryId,
-}: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
+}: GetCourses): Promise<CourseWithProgressAndCategory[]> => {
 	try {
 		const courses = await db.course.findMany({
 			where: {
@@ -51,7 +51,7 @@ export const getCourses = async ({
 			},
 		});
 
-		const coursesWithProgress: CourseWithProgressWithCategory[] = await Promise.all(
+		const coursesWithProgress: CourseWithProgressAndCategory[] = await Promise.all(
 			courses.map(async (course) => {
 				if (course.purchases.length === 0) {
 					return {
