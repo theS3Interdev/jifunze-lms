@@ -14,7 +14,7 @@ type CourseMobileSidebarProps = {
 	progressCount: number;
 };
 
-export const CoursesMobileSidebar = ({
+export const CourseMobileSidebar = ({
 	course,
 	progressCount,
 }: CourseMobileSidebarProps) => {
