@@ -14,9 +14,9 @@ import { IconType } from "react-icons";
 
 import { CategoryItem } from "./category-item";
 
-interface CategoriesProps {
+type CategoriesProps = {
 	items: Category[];
-}
+};
 
 const iconMap: Record<Category["name"], IconType> = {
 	Music: FcMusic,

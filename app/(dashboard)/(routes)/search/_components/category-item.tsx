@@ -1,16 +1,16 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { IconType } from "react-icons";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
-interface CategoryItemProps {
+type CategoryItemProps = {
 	label: string;
 	value?: string;
 	icon?: IconType;
-}
+};
 
 export const CategoryItem = ({ label, value, icon: Icon }: CategoryItemProps) => {
 	const pathname = usePathname();
