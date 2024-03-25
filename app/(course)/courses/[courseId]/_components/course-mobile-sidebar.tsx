@@ -1,11 +1,11 @@
-import { Menu } from "lucide-react";
 import { Chapter, Course, UserProgress } from "@prisma/client";
+import { Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-import { CoursesSidebar } from "./courses-sidebar";
+import { CourseSidebar } from "./course-sidebar";
 
-type CoursesMobileSidebarProps = {
+type CourseMobileSidebarProps = {
 	course: Course & {
 		chapters: (Chapter & {
 			userProgress: UserProgress[] | null;
@@ -17,7 +17,7 @@ type CoursesMobileSidebarProps = {
 export const CoursesMobileSidebar = ({
 	course,
 	progressCount,
-}: CoursesMobileSidebarProps) => {
+}: CourseMobileSidebarProps) => {
 	return (
 		<Sheet>
 			<SheetTrigger className="pr-4 transition hover:opacity-75 md:hidden">
@@ -25,7 +25,7 @@ export const CoursesMobileSidebar = ({
 			</SheetTrigger>
 
 			<SheetContent side="left" className="w-72 bg-white p-0">
-				<CoursesSidebar course={course} progressCount={progressCount} />
+				<CourseSidebar course={course} progressCount={progressCount} />
 			</SheetContent>
 		</Sheet>
 	);

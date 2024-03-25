@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+
 import { db } from "@/lib/data/db";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {

@@ -5,9 +5,9 @@ import { Chapter, Course, UserProgress } from "@prisma/client";
 import { db } from "@/lib/data/db";
 import { CourseProgress } from "@/components/course-progress";
 
-import { CoursesSidebarItem } from "./courses-sidebar-item";
+import { CourseSidebarItem } from "./course-sidebar-item";
 
-type CoursesSidebarProps = {
+type CourseSidebarProps = {
 	course: Course & {
 		chapters: (Chapter & {
 			userProgress: UserProgress[] | null;
@@ -16,7 +16,7 @@ type CoursesSidebarProps = {
 	progressCount: number;
 };
 
-export const CoursesSidebar = async ({ course, progressCount }: CoursesSidebarProps) => {
+export const CourseSidebar = async ({ course, progressCount }: CourseSidebarProps) => {
 	const { userId } = auth();
 
 	if (!userId) {
@@ -36,6 +36,7 @@ export const CoursesSidebar = async ({ course, progressCount }: CoursesSidebarPr
 		<div className="flex h-full flex-col overflow-y-auto border-r shadow-sm">
 			<div className="flex flex-col border-b p-8">
 				<h1 className="font-semibold">{course.title}</h1>
+
 				{purchase && (
 					<div className="mt-10">
 						<CourseProgress variant="success" value={progressCount} />
@@ -45,7 +46,7 @@ export const CoursesSidebar = async ({ course, progressCount }: CoursesSidebarPr
 
 			<div className="flex w-full flex-col">
 				{course.chapters.map((chapter) => (
-					<CoursesSidebarItem
+					<CourseSidebarItem
 						key={chapter.id}
 						id={chapter.id}
 						label={chapter.title}

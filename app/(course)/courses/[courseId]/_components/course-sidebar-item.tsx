@@ -5,7 +5,7 @@ import { CheckCircle, Lock, PlayCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-type CoursesSidebarItemProps = {
+type CourseSidebarItemProps = {
 	label: string;
 	id: string;
 	isCompleted: boolean;
@@ -13,13 +13,13 @@ type CoursesSidebarItemProps = {
 	isLocked: boolean;
 };
 
-export const CoursesSidebarItem = ({
+export const CourseSidebarItem = ({
 	label,
 	id,
 	isCompleted,
 	courseId,
 	isLocked,
-}: CoursesSidebarItemProps) => {
+}: CourseSidebarItemProps) => {
 	const pathname = usePathname();
 
 	const router = useRouter();

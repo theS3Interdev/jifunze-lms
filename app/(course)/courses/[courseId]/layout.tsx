@@ -2,12 +2,13 @@ import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 
 import { db } from "@/lib/data/db";
+
 import { getProgress } from "@/lib/actions/get-progress";
 
-import { CoursesNavigationBar } from "./_components/courses-navigation-bar";
-import { CoursesSidebar } from "./_components/courses-sidebar";
+import { CourseNavigationBar } from "./_components/course-navigation-bar";
+import { CourseSidebar } from "./_components/course-sidebar";
 
-const CoursesLayout = async ({
+const CourseLayout = async ({
 	children,
 	params,
 }: {
@@ -52,11 +53,11 @@ const CoursesLayout = async ({
 	return (
 		<div className="h-full">
 			<div className="fixed inset-y-0 z-50 h-[80px] w-full md:pl-80">
-				<CoursesNavigationBar course={course} progressCount={progressCount} />
+				<CourseNavigationBar course={course} progressCount={progressCount} />
 			</div>
 
 			<div className="fixed inset-y-0 z-50 hidden h-full w-80 flex-col md:flex">
-				<CoursesSidebar course={course} progressCount={progressCount} />
+				<CourseSidebar course={course} progressCount={progressCount} />
 			</div>
 
 			<main className="h-full pt-[80px] md:pl-80">{children}</main>
@@ -64,4 +65,4 @@ const CoursesLayout = async ({
 	);
 };
 
-export default CoursesLayout;
+export default CourseLayout;
