@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
+
 import { Chapter, Course, UserProgress } from "@prisma/client";
 
 import { db } from "@/lib/data/db";
+
 import { CourseProgress } from "@/components/course-progress";
 
 import { CourseSidebarItem } from "./course-sidebar-item";
@@ -34,7 +36,7 @@ export const CourseSidebar = async ({ course, progressCount }: CourseSidebarProp
 
 	return (
 		<div className="flex h-full flex-col overflow-y-auto border-r shadow-sm">
-			<div className="flex flex-col border-b p-8">
+			<div className="flex flex-col border-b p-7">
 				<h1 className="font-semibold">{course.title}</h1>
 
 				{purchase && (

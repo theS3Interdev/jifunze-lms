@@ -1,11 +1,12 @@
-import { db } from "@/lib/data/db";
 import { Attachment, Chapter } from "@prisma/client";
 
-interface GetChapterProps {
+import { db } from "@/lib/data/db";
+
+type GetChapterProps = {
 	userId: string;
 	courseId: string;
 	chapterId: string;
-}
+};
 
 export const getChapter = async ({ userId, courseId, chapterId }: GetChapterProps) => {
 	try {
@@ -36,7 +37,7 @@ export const getChapter = async ({ userId, courseId, chapterId }: GetChapterProp
 		});
 
 		if (!chapter || !course) {
-			throw new Error("Chapter or course not found");
+			throw new Error("Chapter or course was not found.");
 		}
 
 		let cloudinaryData = null;
@@ -94,6 +95,7 @@ export const getChapter = async ({ userId, courseId, chapterId }: GetChapterProp
 		};
 	} catch (error) {
 		console.log("[GET_CHAPTER]", error);
+
 		return {
 			chapter: null,
 			course: null,

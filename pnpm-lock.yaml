@@ -13,7 +13,7 @@ dependencies:
     version: 16.6.0(@types/react-dom@18.2.22)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)
   '@hookform/resolvers':
     specifier: ^3.3.4
-    version: 3.3.4(react-hook-form@7.51.1)
+    version: 3.3.4(react-hook-form@7.51.2)
   '@prisma/client':
     specifier: ^5.11.0
     version: 5.11.0(prisma@5.11.0)
@@ -48,11 +48,11 @@ dependencies:
     specifier: ^1.1.5
     version: 1.1.5(@types/react-dom@18.2.22)(@types/react@18.2.67)(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-table':
-    specifier: ^8.15.0
-    version: 8.15.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^8.15.3
+    version: 8.15.3(react-dom@18.2.0)(react@18.2.0)
   '@uploadthing/react':
-    specifier: ^6.4.0
-    version: 6.4.0(next@14.1.4)(react@18.2.0)(uploadthing@6.6.0)
+    specifier: ^6.4.1
+    version: 6.4.1(next@14.1.4)(react@18.2.0)(uploadthing@6.7.0)
   axios:
     specifier: ^1.6.8
     version: 1.6.8
@@ -87,8 +87,8 @@ dependencies:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
   react-hook-form:
-    specifier: ^7.51.1
-    version: 7.51.1(react@18.2.0)
+    specifier: ^7.51.2
+    version: 7.51.2(react@18.2.0)
   react-icons:
     specifier: ^5.0.1
     version: 5.0.1(react@18.2.0)
@@ -103,10 +103,10 @@ dependencies:
     version: 2.2.2
   tailwindcss-animate:
     specifier: ^1.0.7
-    version: 1.0.7(tailwindcss@3.4.1)
+    version: 1.0.7(tailwindcss@3.4.3)
   uploadthing:
-    specifier: ^6.6.0
-    version: 6.6.0(next@14.1.4)(tailwindcss@3.4.1)
+    specifier: ^6.7.0
+    version: 6.7.0(next@14.1.4)(tailwindcss@3.4.3)
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -140,14 +140,14 @@ devDependencies:
     specifier: ^3.2.5
     version: 3.2.5
   prettier-plugin-tailwindcss:
-    specifier: ^0.5.12
-    version: 0.5.12(prettier@3.2.5)
+    specifier: ^0.5.13
+    version: 0.5.13(prettier@3.2.5)
   prisma:
     specifier: ^5.11.0
     version: 5.11.0
   tailwindcss:
-    specifier: ^3.4.1
-    version: 3.4.1(ts-node@10.9.2)
+    specifier: ^3.4.3
+    version: 3.4.3(ts-node@10.9.2)
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.11.30)(typescript@5.4.3)
@@ -379,12 +379,12 @@ packages:
       - react-native
     dev: false
 
-  /@hookform/resolvers@3.3.4(react-hook-form@7.51.1):
+  /@hookform/resolvers@3.3.4(react-hook-form@7.51.2):
     resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.51.1(react@18.2.0)
+      react-hook-form: 7.51.2(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -1377,20 +1377,20 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@tanstack/react-table@8.15.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-8K4RSROUtXUtfiezV6Ehl8z99axFrkQnxXi0vjWBJv3Tsm5x4EyrgXI7d2tOOMoANykKZLB6S1sGZGemoMRt7Q==}
+  /@tanstack/react-table@8.15.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-aocQ4WpWiAh7R+yxNp+DGQYXeVACh5lv2kk96DjYgFiHDCB0cOFoYMT/pM6eDOzeMXR9AvPoLeumTgq8/0qX+w==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@tanstack/table-core': 8.14.0
+      '@tanstack/table-core': 8.15.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/table-core@8.14.0:
-    resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
+  /@tanstack/table-core@8.15.3:
+    resolution: {integrity: sha512-wOgV0HfEvuMOv8RlqdR9MdNNqq0uyvQtP39QOvGlggHvIObOE4exS+D5LGO8LZ3LUXxId2IlUKcHDHaGujWhUg==}
     engines: {node: '>=12'}
     dev: false
 
@@ -1631,30 +1631,30 @@ packages:
     resolution: {integrity: sha512-mB7XAKy5ARltUWZxb2oE0OwUW5Wplxi7Z3cqCvf/ZFvQ1E6lcGVNNKbmJI8c4GaONyEYnalo0Yl228zzHzyZnQ==}
     dev: false
 
-  /@uploadthing/react@6.4.0(next@14.1.4)(react@18.2.0)(uploadthing@6.6.0):
-    resolution: {integrity: sha512-XvlrlgH6LM2Zmw/yzryyI6+6mdANFg9nCYvE4glF81cvqVl6X62nrwC3EhvC/H19ZaW8atwsvtyjNxZS3+l+gA==}
+  /@uploadthing/react@6.4.1(next@14.1.4)(react@18.2.0)(uploadthing@6.7.0):
+    resolution: {integrity: sha512-e6/2U97B+rAiCjEfAEf5RfFy6sxXrhsOHHkT4ssMbbpGihbAVn5fFvEYT4q3GulQNAEfZE7JudEapbHKyADWrw==}
     peerDependencies:
       next: '*'
       react: ^17.0.2 || ^18.0.0
-      uploadthing: 6.6.0
+      uploadthing: 6.7.0
     peerDependenciesMeta:
       next:
         optional: true
     dependencies:
       '@uploadthing/dropzone': 0.2.1(react@18.2.0)
-      '@uploadthing/shared': 6.3.4(@uploadthing/mime-types@0.2.6)
+      '@uploadthing/shared': 6.4.0(@uploadthing/mime-types@0.2.6)
       file-selector: 0.6.0
       next: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       tailwind-merge: 2.2.2
-      uploadthing: 6.6.0(next@14.1.4)(tailwindcss@3.4.1)
+      uploadthing: 6.7.0(next@14.1.4)(tailwindcss@3.4.3)
     transitivePeerDependencies:
       - '@uploadthing/mime-types'
       - solid-js
     dev: false
 
-  /@uploadthing/shared@6.3.4(@uploadthing/mime-types@0.2.6):
-    resolution: {integrity: sha512-qMf7BiwQth14Gxt2Zerkrbpy/gIHUIkxBz7aN+OEh1T+z2gv8qLRhMXoWFaU56Q+3/NegdR6J+9jwPWc9WwMug==}
+  /@uploadthing/shared@6.4.0(@uploadthing/mime-types@0.2.6):
+    resolution: {integrity: sha512-N2fYHl5pfOjrRyEXFNyKf8gLqYiSSsPE71Vky7Efbze/tgCcX9J4H4UXPSHS4Ty2w6A2xeZgGtJRjCXv9lXjaQ==}
     peerDependencies:
       '@uploadthing/mime-types': 0.2.6
     peerDependenciesMeta:
@@ -3779,14 +3779,15 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.12(prettier@3.2.5):
-    resolution: {integrity: sha512-o74kiDBVE73oHW+pdkFSluHBL3cYEvru5YgEqNkBMFF7Cjv+w1vI565lTlfoJT4VLWDe0FMtZ7FkE/7a4pMXSQ==}
+  /prettier-plugin-tailwindcss@0.5.13(prettier@3.2.5):
+    resolution: {integrity: sha512-2tPWHCFNC+WRjAC4SIWQNSOdcL1NNkydXim8w7TDqlZi+/ulZYz2OouAI6qMtkggnPt7lGamboj6LcTMwcCvoQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
       '@prettier/plugin-pug': '*'
       '@shopify/prettier-plugin-liquid': '*'
       '@trivago/prettier-plugin-sort-imports': '*'
+      '@zackad/prettier-plugin-twig-melody': '*'
       prettier: ^3.0
       prettier-plugin-astro: '*'
       prettier-plugin-css-order: '*'
@@ -3798,7 +3799,6 @@ packages:
       prettier-plugin-sort-imports: '*'
       prettier-plugin-style-order: '*'
       prettier-plugin-svelte: '*'
-      prettier-plugin-twig-melody: '*'
     peerDependenciesMeta:
       '@ianvs/prettier-plugin-sort-imports':
         optional: true
@@ -3807,6 +3807,8 @@ packages:
       '@shopify/prettier-plugin-liquid':
         optional: true
       '@trivago/prettier-plugin-sort-imports':
+        optional: true
+      '@zackad/prettier-plugin-twig-melody':
         optional: true
       prettier-plugin-astro:
         optional: true
@@ -3827,8 +3829,6 @@ packages:
       prettier-plugin-style-order:
         optional: true
       prettier-plugin-svelte:
-        optional: true
-      prettier-plugin-twig-melody:
         optional: true
     dependencies:
       prettier: 3.2.5
@@ -3946,8 +3946,8 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-hook-form@7.51.1(react@18.2.0):
-    resolution: {integrity: sha512-ifnBjl+kW0ksINHd+8C/Gp6a4eZOdWyvRv0UBaByShwU8JbVx5hTcTWEcd5VdybvmPTATkVVXk9npXArHmo56w==}
+  /react-hook-form@7.51.2(react@18.2.0):
+    resolution: {integrity: sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -4453,16 +4453,16 @@ packages:
       '@babel/runtime': 7.24.1
     dev: false
 
-  /tailwindcss-animate@1.0.7(tailwindcss@3.4.1):
+  /tailwindcss-animate@1.0.7(tailwindcss@3.4.3):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
-      tailwindcss: 3.4.1(ts-node@10.9.2)
+      tailwindcss: 3.4.3(ts-node@10.9.2)
     dev: false
 
-  /tailwindcss@3.4.1(ts-node@10.9.2):
-    resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
+  /tailwindcss@3.4.3(ts-node@10.9.2):
+    resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -4693,8 +4693,8 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /uploadthing@6.6.0(next@14.1.4)(tailwindcss@3.4.1):
-    resolution: {integrity: sha512-PccLhKjxK1dBKcY9a5vUG+P+bu35cyB7dtDEm7xUVq/C+nc6hC/rh+vC+9jhoJhga+h+O7Rd7M8ZyBaf6W72sA==}
+  /uploadthing@6.7.0(next@14.1.4)(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-meWUtFcESRTnmn0vvis6GH07tuQ73sZVYwlQBzspPy2XJq+4fJQ6S9j3sXbp/ocrpc6UyeiMLfM+QURzAtv5lA==}
     engines: {node: '>=18.13.0'}
     peerDependencies:
       express: '*'
@@ -4715,11 +4715,11 @@ packages:
         optional: true
     dependencies:
       '@uploadthing/mime-types': 0.2.6
-      '@uploadthing/shared': 6.3.4(@uploadthing/mime-types@0.2.6)
+      '@uploadthing/shared': 6.4.0(@uploadthing/mime-types@0.2.6)
       consola: 3.2.3
       next: 14.1.4(react-dom@18.2.0)(react@18.2.0)
       std-env: 3.7.0
-      tailwindcss: 3.4.1(ts-node@10.9.2)
+      tailwindcss: 3.4.3(ts-node@10.9.2)
     dev: false
 
   /uri-js@4.4.1:
