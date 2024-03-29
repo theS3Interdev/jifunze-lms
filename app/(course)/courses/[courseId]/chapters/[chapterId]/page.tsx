@@ -9,7 +9,7 @@ import { Preview } from "@/components/preview";
 import { Separator } from "@/components/ui/separator";
 import { CourseEnrollButton } from "./_components/course-enroll-button";
 import { CourseProgressButton } from "./_components/course-progress-button";
-//import { VideoPlayer } from "./_components/video-player";
+import { CourseVideoPlayer } from "./_components/course-video-player";
 
 const ChapterPage = async ({
 	params,
@@ -47,27 +47,28 @@ const ChapterPage = async ({
 	return (
 		<div>
 			{userProgress?.isCompleted && (
-				<Banner variant="success" label="You already completed this chapter." />
+				<Banner variant="success" label="You have already completed this chapter." />
 			)}
 
 			{isLocked && (
 				<Banner
 					variant="warning"
-					label="You need to purchase this course to watch this chapter."
+					label="Sorry, but you need to purchase the course to watch this chapter."
 				/>
 			)}
 
 			<div className="mx-auto flex max-w-4xl flex-col pb-20">
 				<div className="p-4">
-					{/* <VideoPlayer
+					<CourseVideoPlayer
 						chapterId={params.chapterId}
 						title={chapter.title}
 						courseId={params.courseId}
 						nextChapterId={nextChapter?.id}
 						playbackId={cloudinaryData?.playbackId!}
+						publicId={cloudinaryData?.publicId!}
 						isLocked={isLocked}
 						completeOnEnd={completeOnEnd}
-					/> */}
+					/>
 				</div>
 
 				<div>
@@ -95,12 +96,13 @@ const ChapterPage = async ({
 					{!!attachments.length && (
 						<>
 							<Separator />
+
 							<div className="p-4">
 								{attachments.map((attachment: any) => (
 									<a
+										key={attachment.id}
 										href={attachment.url}
 										target="_blank"
-										key={attachment.id}
 										className="flex w-full items-center rounded-md border bg-sky-200 p-3 text-sky-700 hover:underline"
 									>
 										<File />

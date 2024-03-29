@@ -11,7 +11,7 @@ import { Chapter, CloudinaryData } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { VideoPlayer } from "@/components/video-player";
+import { ChapterVideoPlayer } from "./chapter-video-player";
 
 type ChapterVideoFormProps = {
 	initialData: Chapter & { CloudinaryData?: CloudinaryData | null };
@@ -91,10 +91,10 @@ export const ChapterVideoForm = ({
 						<Video id="empty" className="h-10 w-10 text-slate-500" />
 					</div>
 				) : (
-					<div className="relative mt-2 aspect-video">
-						<VideoPlayer
+					<div className="relative mt-2 aspect-video overflow-hidden rounded-lg border-2">
+						<ChapterVideoPlayer
 							id={initialData.playbackId!}
-							publicId={initialData.publicId!}
+							src={initialData.publicId!}
 							width={0}
 							height={0}
 						/>

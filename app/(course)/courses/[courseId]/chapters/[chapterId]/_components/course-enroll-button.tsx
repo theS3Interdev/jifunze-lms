@@ -8,10 +8,10 @@ import { formatPrice } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
-interface CourseEnrollButtonProps {
+type CourseEnrollButtonProps = {
 	price: number;
 	courseId: string;
-}
+};
 
 export const CourseEnrollButton = ({ price, courseId }: CourseEnrollButtonProps) => {
 	const [isLoading, setIsLoading] = useState(false);
