@@ -4,7 +4,7 @@ import { SidebarRoutes } from "@/app/(dashboard)/_components/sidebar-routes";
 export const SideBar = () => {
 	return (
 		<div className="flex h-full flex-col overflow-y-auto border-r bg-white shadow-sm">
-			<div className="p-6">
+			<div className="p-5">
 				<Logo />
 			</div>
 

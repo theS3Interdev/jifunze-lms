@@ -16,7 +16,7 @@ async function main() {
 			],
 		});
 
-		console.log("Success!");
+		console.log("Course categories have been seeded successfully.");
 	} catch (error) {
 		console.log("Error seeding the course categories.", error);
 	} finally {
