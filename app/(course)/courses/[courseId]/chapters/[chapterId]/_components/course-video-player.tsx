@@ -22,7 +22,6 @@ type VideoPlayerProps = {
 	nextChapterId?: string;
 	isLocked: boolean;
 	completeOnEnd: boolean;
-	title: string;
 };
 
 export const CourseVideoPlayer = ({
@@ -33,7 +32,6 @@ export const CourseVideoPlayer = ({
 	nextChapterId,
 	isLocked,
 	completeOnEnd,
-	title,
 }: VideoPlayerProps) => {
 	const [isReady, setIsReady] = useState(false);
 

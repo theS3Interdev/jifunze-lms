@@ -61,7 +61,6 @@ const ChapterPage = async ({
 				<div className="p-4">
 					<CourseVideoPlayer
 						chapterId={params.chapterId}
-						title={chapter.title}
 						courseId={params.courseId}
 						nextChapterId={nextChapter?.id}
 						playbackId={cloudinaryData?.playbackId!}

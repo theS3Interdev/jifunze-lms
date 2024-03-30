@@ -13,6 +13,8 @@
 		"@clerk/nextjs": "^4.29.9",
 		"@hello-pangea/dnd": "^16.6.0",
 		"@hookform/resolvers": "^3.3.4",
+		"@paypal/checkout-server-sdk": "^1.0.3",
+		"@paypal/react-paypal-js": "^8.2.0",
 		"@prisma/client": "^5.11.0",
 		"@radix-ui/react-alert-dialog": "^1.0.5",
 		"@radix-ui/react-checkbox": "^1.0.4",
@@ -49,6 +51,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.30",
+		"@types/paypal__checkout-server-sdk": "^1.0.8",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"autoprefixer": "^10.4.19",
