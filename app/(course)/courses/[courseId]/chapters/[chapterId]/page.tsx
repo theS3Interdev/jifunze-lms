@@ -102,7 +102,7 @@ const ChapterPage = async ({
 										key={attachment.id}
 										href={attachment.url}
 										target="_blank"
-										className="flex w-full items-center rounded-md border bg-sky-200 p-3 text-sky-700 hover:underline"
+										className="my-2 flex w-full items-center gap-2 rounded-md border bg-sky-200 p-3 text-sky-700 hover:underline"
 									>
 										<File />
 										<p className="line-clamp-1">{attachment.name}</p>
