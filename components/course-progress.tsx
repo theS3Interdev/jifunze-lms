@@ -2,11 +2,11 @@ import { Progress } from "@/components/ui/progress";
 
 import { cn } from "@/lib/utils";
 
-interface CourseProgressProps {
+type CourseProgressProps = {
 	value: number;
 	variant?: "default" | "success";
 	size?: "default" | "sm";
-}
+};
 
 const colorByVariant = {
 	default: "text-sky-700",
