@@ -89,6 +89,7 @@ model Purchase {
   updatedAt DateTime @updatedAt()
   userId    String
   courseId  String   @db.ObjectId
+  orderId   String
   course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@unique([userId, courseId])
@@ -99,5 +100,5 @@ model PaymentCustomer {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String   @unique
-  orderId   String   @unique
+  userEmail String   @unique
 }
