@@ -4,15 +4,15 @@ import { db } from "@/lib/data/db";
 
 import { getProgress } from "@/lib/actions/get-progress";
 
-type CourseWithProgressWithCategory = Course & {
+type CourseWithProgressAndCategory = Course & {
 	category: Category;
 	chapters: Chapter[];
 	progress: number | null;
 };
 
 type DashboardCourses = {
-	completedCourses: CourseWithProgressWithCategory[];
-	coursesInProgress: CourseWithProgressWithCategory[];
+	completedCourses: CourseWithProgressAndCategory[];
+	coursesInProgress: CourseWithProgressAndCategory[];
 };
 
 export const getDashboardCourses = async (userId: string): Promise<DashboardCourses> => {
@@ -37,7 +37,7 @@ export const getDashboardCourses = async (userId: string): Promise<DashboardCour
 
 		const courses = purchasedCourses.map(
 			(purchase) => purchase.course,
-		) as CourseWithProgressWithCategory[];
+		) as CourseWithProgressAndCategory[];
 
 		for (let course of courses) {
 			const progress = await getProgress(userId, course.id);
@@ -45,6 +45,7 @@ export const getDashboardCourses = async (userId: string): Promise<DashboardCour
 		}
 
 		const completedCourses = courses.filter((course) => course.progress === 100);
+
 		const coursesInProgress = courses.filter((course) => (course.progress ?? 0) < 100);
 
 		return {
