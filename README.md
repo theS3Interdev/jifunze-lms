@@ -11,9 +11,9 @@ This is the repository for the Jifunze Learning Management System Platform.
 1. Typescript
 1. Shadcn UI
 1. Tailwind
-1. Mux
+1. Cloudinary
 1. Prisma
-1. PostgreSQL
+1. MongoDB
 1. PayPal
 
 ## Key Features
@@ -28,12 +28,12 @@ This is the repository for the Jifunze Learning Management System Platform.
 - Create new chapters
 - Easily reorder chapter position with drag and drop
 - Upload thumbnails, attachments and videos using UploadThing
-- Video processing using Mux
-- HLS video player using Mux
+- Video processing using Cloudinary
+- HLS video player using Cloudinary
 - Rich text editor for chapter description
 - Authentication using Clerk
 - ORM using Prisma
-- PostgreSQL database using Neon
+- MongoDB database using MongoDB Atlas
 
 ## Prerequisites
 
@@ -55,25 +55,25 @@ pnpm install
 
 ```js
 CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
-WEBHOOK_SECRET=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+
+CLOUDINARY_API_SECRET=
+NEXT_PUBLIC_CLOUDINARY_API_KEY=
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
 
 DATABASE_URL=
 
-UPLOADTHING_SECRET=
-UPLOADTHING_APP_ID=
-
-MUX_TOKEN_ID=
-MUX_TOKEN_SECRET=
-
-NEXT_PUBLIC_PAYPAL_API_URL=
-NEXT_PUBLIC_PAYPAL_CLIENT_ID=
 PAYPAL_APP_SECRET=
+NEXT_PUBLIC_PAYPAL_CLIENT_ID=
 
+UPLOADTHING_APP_ID=
+UPLOADTHING_SECRET=
+
+NEXT_PUBLIC_APP_URL=
 NEXT_PUBLIC_INSTRUCTOR_ID=
 ```
 
