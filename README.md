@@ -1,8 +1,8 @@
-# Jifunze Learning Management System Platform
+# Jifunze Learning Management System
 
 ## Introduction
 
-This is the repository for the Jifunze Learning Management System Platform.
+This is the repository for the Jifunze Learning Management System.
 
 ## Tech Stack
 
@@ -37,12 +37,12 @@ This is the repository for the Jifunze Learning Management System Platform.
 
 ## Prerequisites
 
-**Node version 18.x.x**
+**Node version 20.x.x**
 
 ## Cloning The Repository
 
 ```shell
-git clone https://github.com/theS3Interdev/jifunze-lms-platform.git
+git clone https://github.com/theS3Interdev/jifunze-lms.git
 ```
 
 ## Install Packages
@@ -55,9 +55,9 @@ pnpm install
 
 ```js
 CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=
 
